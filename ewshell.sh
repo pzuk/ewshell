@@ -500,7 +500,8 @@ function executebrowse()
 	cat $TMPFILE | jq -r '.hits.hits[]._source' > $TMPFILESOURCES
 	local versions=( $(cat $TMPFILE | jq -r '.hits.hits[]._version') )
 	local ids=( $(cat $TMPFILE | jq -r '.hits.hits[]._id') )
-	showbrowsesearchresults $TMPFILESOURCES $FROM versions ids
+	local highlights=(  )
+	showbrowsesearchresults $TMPFILESOURCES $FROM versions ids highlights
 	rm $TMPFILE
 	rm $TMPFILESOURCES
 	
